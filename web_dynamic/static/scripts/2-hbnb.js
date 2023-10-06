@@ -1,5 +1,6 @@
 $(document).ready(function () {
   const amenity_list = {};
+  const status_uri = 'http://0.0.0.0:5001/api/v1/status/'
 
   function updateAmenities() {
     const amenities = Object.values(amenity_list).join(', ');
@@ -16,4 +17,17 @@ $(document).ready(function () {
     }
     updateAmenities();
  })
+
+  $.ajax({
+    url: status_uri,
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      if (data.status === "OK") {
+        $('div#api_status').addClass('available');
+      } else {
+	$('div#api_status').removeClass('available');
+      }
+    }
+  })
 })
