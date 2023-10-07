@@ -7,12 +7,10 @@ $(document).ready(function () {
   }
 
   $('input:checkbox').change(function () {
-    const amenity_id = $(this).attr('amenity_id')
-    const amenity_name = $(this).attr('amenity_name')
     if ($(this).is(':checked')) {
-      amenity_list[amenity_id] = amenity_name;
+      amenity_list[$(this).attr('data-id')] = $this.attr('data-name');
     } else {
-      delete amenity_list[amenity_id];
+      delete amenity_list[$(this).attr('data-id')];
     }
     updateAmenities();
  })
