@@ -8,10 +8,10 @@ $(document).ready(function () {
 
   $('input:checkbox').change(function () {
     if ($(this).is(':checked')) {
-      amenity_list[$(this).attr('data-id')] = $this.attr('data-name');
+      amenity_list[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
       delete amenity_list[$(this).attr('data-id')];
     }
     updateAmenities();
- })
-})
+ });
+});

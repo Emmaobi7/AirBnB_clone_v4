@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const amenity_list = {};
-  const status_uri = 'http://0.0.0.0:5001/api/v1/status/'
+  const status_url = 'http://0.0.0.0:5001/api/v1/status/'
 
   function updateAmenities() {
     const amenities = Object.values(amenity_list).join(', ');
@@ -8,26 +8,19 @@ $(document).ready(function () {
   }
 
   $('input:checkbox').change(function () {
-    const amenity_id = $(this).attr('amenity_id')
-    const amenity_name = $(this).attr('amenity_name')
     if ($(this).is(':checked')) {
-      amenity_list[amenity_id] = amenity_name;
+      amenity_list[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
-      delete amenity_list[amenity_id];
+      delete amenity_list[$(this).attr('data-id')];
     }
     updateAmenities();
- })
+  });
 
-  $.ajax({
-    url: status_uri,
-    type: 'GET',
-    dataType: 'json',
-    success: function (data) {
-      if (data.status === "OK") {
-        $('div#api_status').addClass('available');
-      } else {
-	$('div#api_status').removeClass('available');
-      }
-    }
-  })
-})
+    $.get("http://localhost:5001/api/v1/status/", data => {
+    if (data.status == "OK") {
+      $('DIV#api_status').addClass("available");
+    } else {
+      $('DIV#api_status').removeClass("available")
+;                                                     }
+  });
+});
