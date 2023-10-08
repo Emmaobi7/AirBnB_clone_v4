@@ -18,7 +18,7 @@ def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-
+# 0-hbnb route
 @app.route('/0-hbnb', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
