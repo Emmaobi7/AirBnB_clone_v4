@@ -19,7 +19,7 @@ def close_db(error):
     storage.close()
 
 
-// 101-hbnb route
+# 101-hbnb route
 @app.route('/101-hbnb', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
